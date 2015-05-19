@@ -1,3 +1,17 @@
+/**************************************
+ * Plan v1.2 (beta)
+ * ------------------------------------
+ *
+ * Changelog 1.2:
+ * ------------------------------------
+ * - Streamlining of LiveSearch
+ * - Added "AM"/"PM" differentiation
+ * - More advanced sorting, taking 
+ *   into account AM/PM and current
+ *   time
+ *
+ **/ 
+
 $(document).ready(function(){
 	
 	var $rows = $('div#rows>div.column>div.row');
@@ -6,7 +20,7 @@ $(document).ready(function(){
 	}).toArray();
 
 	$('input#create-row-name').on("keyup paste drop", function () {
-		var searchTerm = this.value.toLowerCase(), 
+		var searchTerm = $.trim( this.value.toLowerCase() ), 
 			lastTerm = $(this).data("lastTerm"),
 			i, found;
 
@@ -100,6 +114,7 @@ function createRow(){
     inp.val(''); //unload input
 
     saveAll();
+	$('div#rows>div.column>div.row').show();
 }
 
 function deleteRow(fn,id){
@@ -122,9 +137,10 @@ function saveAll(){
     $('div#rows>div.column>div.row').each(function(){
 		var day = $(this).attr('data-date-day');
 		var mon = $(this).attr('data-date-month');
+		var hou = $(this).attr('data-date-hour');
         var name = $(this).find('div.input-group>input').val();
         var inst = $(this).find('div.input-group>div.task-btns>button:not(.btn-default)').attr('data-original-title');
-        var thisData = [name,inst,day,mon];
+        var thisData = [name,inst,day,mon,hou];
         saveData.push(thisData);
     });
 
@@ -137,8 +153,10 @@ function saveAll(){
         success: function(data, textStatus,jqXHR){
             $('div.command-btns>button').prop('disabled',false);
             formatTooltips();
+			//console.log(data);
             showAlert('saved');
-			console.log(data);
+			if($('button#autoRefreshBtn').attr('data-checked')=='1')
+				refreshAll();
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(errorThrown);
@@ -169,6 +187,7 @@ function callBackTime(){
 		$(this).parent().find('div.input-group-btn>button.button-time').remove();
 		var day = 0;
 		var mon = 0;
+		var hou = '';
 		var isDate = false;
 		
         var searchResult = $(this).val().toString();
@@ -179,21 +198,27 @@ function callBackTime(){
 					var dayMon = word.split('/');
 					day = dayMon[0];
 					mon = dayMon[1];
+					hou = (typeof dayMon[2]!== 'undefined' ? dayMon[2] : false);
+
 					isDate = ($.isNumeric(day)&&$.isNumeric(mon) ? true : false);
 				}
 			});
         } else {
-			$(this).parent().parent().removeAttr('data-date-month').removeAttr('data-date-day');
+			$(this).parent().parent().removeAttr('data-date-month').removeAttr('data-date-day').removeAttr('data-date-hour');
 		}
 		
 		if(isDate){
 			var d = new Date();
 			var tmon = d.getMonth()+1;
 			var tday = d.getDate();
-			var clas = (tday==day&&tmon==mon) ? 'disabled btn-success' : 'disabled btn-default';
+			var thou = d.getHours();
+
+			shou = ((hou=='PM'&&thou>=12)||(hou=='AM'&&thou<12)||!hou) ? true : false;
+			var clas = (tday==day&&tmon==mon&&shou) ? 'disabled btn-success' : 'disabled btn-default';
 			
 			var data = '<button type="button" class="btn button-time '+clas+'">'+day+'/'+mon+'</button>';
 			$(this).parent().parent().attr('data-date-month',mon).attr('data-date-day',day);
+			if(hou!==false) $(this).parent().parent().attr('data-date-hour',hou);
 			var output = $(this).parent().find('div.input-group-btn>button.task-delete');
 			output.after(data);
 		}
@@ -307,4 +332,11 @@ function filterAll(){
             }
         })
     }
+}
+
+function autoRefresh(){
+	var btn = $('button#autoRefreshBtn');
+	btn.attr('data-checked')=='1'
+			? btn.attr('data-checked','0').find('span').removeClass('glyphicon-check').addClass('glyphicon-unchecked')
+			: btn.attr('data-checked','1').find('span').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
 }

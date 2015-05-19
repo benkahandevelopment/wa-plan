@@ -36,6 +36,5 @@ Planning Organisation based on Walker Andersen Recruitment scheduling system.
 * Refresh - refreshes current session
 * New Session - starts a fresh session
 
-#### TODO
-* Import to add to current session instead of override
-* Export to only render checked rows
+#### Changelog
+Moved to `CHANGELOG.md`

@@ -14,7 +14,7 @@ session_start();
  $debug = false;
  
  //Root location
- $root = 'http://www.bkdev.co.uk/beta/tap/plan/';
+ $root = 'http://www.example.com/plan/';
  
  /***************************************************/
 

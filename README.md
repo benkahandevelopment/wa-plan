@@ -1,6 +1,5 @@
 # WA-Plan 1.0
-## Planning Organisation
-Based on Walker Andersen Recruitment scheduling system.
+Planning Organisation based on Walker Andersen Recruitment scheduling system.
 
 ### Shortcuts/Hotkeys
 * Create a new task by typing in the name of the objective in the top Input box

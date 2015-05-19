@@ -1,18 +1,38 @@
-<?php session_start();
+<?php
 
-error_reporting(-1); // reports all errors
-ini_set("display_errors", "1"); // shows all errors
-ini_set("log_errors", 1);
-ini_set("error_log", "tmp/php-error.log");
+session_start();
+
+/*
+ * WA-Plan 1.1
+ *
+ * Created by Ben Kahan,
+ * copyright(C) 2015
+ *
+ */
+ 
+ //Turn on debug mode
+ $debug = false;
+ 
+ //Root location
+ $root = 'http://www.bkdev.co.uk/beta/tap/plan/';
+ 
+ /***************************************************/
+
+if($debug){
+	error_reporting(-1);
+	ini_set("display_errors", "1");
+	ini_set("log_errors", 1);
+	ini_set("error_log", "tmp/php-error.log");
+}
 
 if(isset($_GET['code'])&&$_GET['code']=='new'){
     $_SESSION['code']= substr(md5(microtime()),rand(0,26),5);
-    header('location: http://www.bkdev.co.uk/beta/tap/plan/code/'.$_SESSION['code']);
+    header('location: '.$root.'code/'.$_SESSION['code']);
     exit();
 }
 
 if(isset($_SESSION['code'])&&!isset($_GET['code'])) {
-    header('location: http://www.bkdev.co.uk/beta/tap/plan/code/'.$_SESSION['code']);
+    header('location: '.$root.'code/'.$_SESSION['code']);
     exit();
 }
 
@@ -24,13 +44,13 @@ if(!isset($_SESSION['code'])&&isset($_GET['code'])){
 
 if(isset($_SESSION['code'])&&isset($_GET['code'])&&$_SESSION['code']!=$_GET['code']){
     $_SESSION['code'] = $_GET['code'];
-    header('location: http://www.bkdev.co.uk/beta/tap/plan/code/'.$_SESSION['code']);
+    header('location: '.$root.'code/'.$_SESSION['code']);
     exit();
 }
 
 if(!isset($_SESSION['code'])&&!isset($_GET['code'])){
     $_SESSION['code']=substr(md5(microtime()),rand(0,26),5);
-    header('location: http://www.bkdev.co.uk/beta/tap/plan/code/'.$_SESSION['code']);
+    header('location: '.$root.'code/'.$_SESSION['code']);
     exit();
 }
 
@@ -43,7 +63,7 @@ if(!isset($_SESSION['code'])&&!isset($_GET['code'])){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <base href="http://www.bkdev.co.uk/beta/tap/plan/">
+    <base href="<?php echo $root ?>">
 
     <title>Plan</title>
 

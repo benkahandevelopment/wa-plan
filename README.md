@@ -24,8 +24,9 @@ Planning Organisation based on Walker Andersen Recruitment scheduling system.
 * If there is a preexisting task with that name, the LiveSearch feature will find it
 * Press "Go" or hit Return to submit it
 * Tasks can be changed by clicking the name
-* Add a date for the task by putting "D/M" into the input box, eg 12/5, 6/10 etc
-* The date will be shown in the box separately, and will turn green if it matches today's date
+* Add a date for the task by putting "D/M" into the input box, eg 12/5 for 12 May, 6/10 for 6 Oct etc
+  * The date will be shown in the box separately, and will turn green if it matches today's date
+* Click any button in the row above the first task to filter by result
 
 #### Commands
 * Save - updates the corresponding `.txt` file with the session details

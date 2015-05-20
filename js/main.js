@@ -1,53 +1,36 @@
-/**************************************
+/**
  * Plan v1.2 (beta)
- * ------------------------------------
- *
- * Changelog 1.2:
- * ------------------------------------
- * - Streamlining of LiveSearch
- * - Added "AM"/"PM" differentiation
- * - More advanced sorting, taking 
- *   into account AM/PM and current
- *   time
- *
+ * 
+ * Created by Ben Kahan
+ * http://www.bkdev.co.uk/
+ * 
  **/ 
 
 $(document).ready(function(){
 	
-	var $rows = $('div#rows>div.column>div.row');
-	var texts = $rows.map(function () {
-		return $(this).find("div.input-group > input.row-name").text().toLowerCase();
-	}).toArray();
-
-	$('input#create-row-name').on("keyup paste drop", function () {
-		var searchTerm = $.trim( this.value.toLowerCase() ), 
-			lastTerm = $(this).data("lastTerm"),
-			i, found;
-
-		if (searchTerm === lastTerm) return;
-		$(this).data("lastTerm", searchTerm);
-
-		for (i = texts.length - 1; i >= 0; i--) {
-			found = searchTerm === '' || texts[i].indexOf(searchTerm) > -1;
-			$rows[i].style.display = found ? "" : "none";
-		}
-	});
-
-    $('input#create-row-name').keyup(function(e){
-        if($(this).val()!==''){
-            liveSearch();
-        } else $('div#rows>div.column>div.row').show();
-    });
-
+	if($('input#create-row-name').attr('data-livesearch')=='1'){	
+		/*$('input#create-row-name').keyup(function(e){
+			if($(this).val()!==''){
+				liveSearch();
+			} else $('div#rows>div.column>div.row').show();
+		});*/
+		
+		var keyupTimer = -1;
+		$('input#create-row-name').keyup(function(e){
+			if ($(this).val()!==''){
+				if(keyupTimer != -1)
+					window.clearTimeout(keyupTimer);
+				keyupTimer = window.setTimeout(function(){
+					liveSearch();
+					keyupTimer = -1;
+				},200);
+			} else $('div#rows>div.column>div.row').show();
+		});
+	}
+	
     $('input#create-row-name').keypress(function(e){
         if(e.which==13){
             createRow();
-        }
-    });
-
-    $('input.row-name').keydown(function(e){
-        if(e.which==9){
-            var content = $(this).parent().parent().parent().next().find('div>.input-group>input.row-name').focus();
         }
     });
 
@@ -69,7 +52,7 @@ $(document).ready(function(){
 
 function classButton(div){
     if(div.hasClass('btn-default')){
-        //div.parent().children('button').removeClass().addClass('btn').addClass('btn-default');
+        div.parent().children('button').removeClass().addClass('btn').addClass('btn-default');
         var cl = div.attr('data-class');
         div.removeClass().addClass('btn').addClass('btn-'+cl);
         if(cl=='danger'){

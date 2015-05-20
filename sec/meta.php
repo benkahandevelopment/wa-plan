@@ -3,7 +3,7 @@
 		<!-- Row Creation -->
 		<div class="row">
 			<div class="input-group">
-				<input type="text" class="form-control" id="create-row-name" placeholder="New Task Name">
+				<input type="text" class="form-control" id="create-row-name" placeholder="New Task Name" data-livesearch="<?php echo ($livesearch ? '1' : '0') ?>">
 				<div class="input-group-btn add-btn">
 					<button type="button" class="btn btn-success" onclick="createRow()">Go</button>
 				</div>

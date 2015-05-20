@@ -4,6 +4,12 @@
 * Import to add to current session instead of override
 * Export to only render checked rows
 
+#### Changelog 1.3:
+* Enabled Livesearch toggle
+* Created chatrooms and logs
+* Enabled chatroom toggle
+* Brought in jQuery plugin "Title Alert" for chatroom
+
 #### Changelog 1.2:
 * Streamlining of LiveSearch
 * Added "AM"/"PM" differentiation

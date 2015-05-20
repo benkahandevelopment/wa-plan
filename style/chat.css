@@ -1,0 +1,88 @@
+#chatWrap {
+	position:relative;
+	float:right;
+}
+
+#chatContainer {
+	position:absolute;
+	bottom:100%;
+	right:0;
+	margin-bottom:15px;
+	border: 1px solid #ccc;
+	overflow:hidden;
+	background:white;
+	
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	
+	padding:10px;
+}
+
+#chatContainer form, p, span {
+	margin: 0;
+	padding: 0;
+}
+
+#chatContainer #chatbox {
+	margin: 0 auto;
+	margin-bottom:10px;
+	height:270px;
+	width:430px;
+	overflow:auto;
+	border: 1px solid #ccc;
+	
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+#chatContainer #usermsg { width: 350px; }
+
+#chatContainer #submitmsg { width: 70px; float: right; }
+
+#chatContainer .error { color: #f00; }
+
+#chatContainer #menu { padding: 0 0 10px 0; }
+
+#chatContainer .welcome { display:block; }
+
+#chatContainer .logout { display:block; }
+
+#chatContainer .msgln {
+	border-top: 1px solid #ccc;
+	padding: 10px;
+}
+
+#chatContainer .msgln .meta {
+	display:block;
+}
+
+#chatContainer .msgln .meta span.name {
+	font-weight:bold;
+	padding-right: 5px;
+	margin-right: 5px;
+	border-right: 1px solid #ccc;
+}
+
+#chatContainer .msgln .meta span.time {
+	font-weight:normal;
+	color:#666;
+}
+
+#chatContainer .msgln .msg {
+	border-left: 1px dashed #ccc;
+	margin: 5px 0;
+	padding: 0 5px;
+}
+
+#chatContainer span#sending {
+	text-align:center;
+	display:block;
+	margin: 5px 0;
+	padding: 5px 0;
+	
+	border-top: 1px solid #ccc;
+	color: #ccc;
+	font-style:italic;
+}

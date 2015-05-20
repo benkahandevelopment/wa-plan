@@ -1,8 +1,8 @@
-# WA-Plan 1.0
+# WA-Plan 1.3
 Planning Organisation based on Walker Andersen Recruitment scheduling system.
 
 ## Setup
-1. Edit `index.php` to turn on/off debug mode and change the root location
+1. Configure settings commented at the top of `index.php`
 2. Upload all files to server or locally (must be running PHP v5.3 or later)
 3. Launch the root folder in the browser window and you are ready to begin
 
@@ -15,9 +15,10 @@ Planning Organisation based on Walker Andersen Recruitment scheduling system.
 * jQuery 2.1.4 (CDN)
 * Bootstrap 3.3.4 (CDN)
 * FontAwesome 4.3.0 (CDN)
-* Sugar (Packaged)
+* Sugar (Local)
 * HTML5shiv 3.7.2 (CDN)
 * Respond 1.4.2 (CDN)
+* jQuery Title Alert 0.7 (Local)
 
 #### Shortcuts/Hotkeys
 * Create a new task by typing in the name of the objective in the top Input box

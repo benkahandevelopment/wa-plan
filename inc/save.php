@@ -13,7 +13,7 @@ usort($data,function($a, $b){
 	//$a[1] = instruction
 	//$a[2] = day
 	//$a[3] = month
-	//$a[4] = hour (AM/PM)
+	//$a[4] = hour ("AM"/"PM")
 	
 	//get today's day, month and hour
 	$day = intval(date('j'));
@@ -23,25 +23,31 @@ usort($data,function($a, $b){
 	$c = 0;
 	$d = 0;
 	
-	//if today----------------------------------------------
+	//test if today
 	if($a[2]==$b[2]&&$a[3]==$b[3]&&$a[2]==$day&&$a[3]==$mon){
-		//if right now -------------------------------------
+		//test if right now
 		$ah = ((($hou>=12&&$a[4]=='PM')||($hou<12&&$a[4]=='AM')||$a[4]=='') ? true : false);
 		$bh = ((($hou>=12&&$b[4]=='PM')||($hou<12&&$b[4]=='AM')||$b[4]=='') ? true : false);
 		if($ah&&$bh){
-			$ah2 = ((($hou>=12&&$a[4]=='PM')||($hou<12&&$a[4]=='AM')&&$a[4]!='') ? true : false);
-			$bh2 = ((($hou>=12&&$b[4]=='PM')||($hou<12&&$b[4]=='AM')&&$b[4]!='') ? true : false);
-			if($ah2&&!$bh2){
-				return -1;
-			} elseif(!$ah2&&$bh2){
-				return 1;
+			//if both are right now, sort by instruction
+			if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
+				//if they both have different instructions, compare inst string
+				return strcmp($a[1],$b[1]);
+			} else {
+				if(empty($a[1])||empty($b[1])){
+					//if one of them doesn't have instruction, place it higher
+					return empty($a[1]) ? -1 : 1;
+				} else {
+					//if they have same instructions, compare name string
+					return strcmp($a[0],$b[0]);
+				}
 			}
 		} elseif($ah&&!$bh){
 			return -1;
 		} elseif(!$ah&&$bh) { 
 			return 1;
 		} else {
-			//then sort by instruction/name-------------------------
+			//then sort by instruction
 			if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
 				//if they both have different instructions, compare inst string
 				return strcmp($a[1],$b[1]);
@@ -69,7 +75,7 @@ usort($data,function($a, $b){
 		}
 	}
 	
-	//then sort by date-------------------------------------
+	//then sort by date
 	if(!empty($a[2])&&!empty($a[3])&&!empty($b[2])&&!empty($b[3])){
 		//if both dates are set
 		if($a[3]!=$b[3]){
@@ -89,7 +95,7 @@ usort($data,function($a, $b){
 		}
 	}
 	
-	//then sort by instruction/name-------------------------
+	//then sort by instruction/name
 	if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
 		//if they both have different instructions, compare inst string
 		return strcmp($a[1],$b[1]);

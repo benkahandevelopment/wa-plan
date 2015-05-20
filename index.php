@@ -1,35 +1,65 @@
 <?php
 
-/*
- * WA-Plan 1.2
+/**************************************
+ *      -----------------------
+ *      |     WA-Plan 1.3     |
+ *      -----------------------
  *
  * Created by Ben Kahan,
  * copyright(C) 2015
  * 
  *
- * Changelog 1.2:
+ * Changelog 1.3:
  * ------------------------------------
- * - Streamlining of LiveSearch
- * - Added "AM"/"PM" differentiation
- * - More advanced sorting, taking 
- *   into account AM/PM and current
- *   time
  *
- *	 Turn on debug mode
- */	 $debug = true;
+ * - Enabled Livesearch toggle
+ * - Created chatrooms and logs
+ * - Enabled chatroom toggle
+ * - Brought in jQuery plugin "Title 
+ *   Alert" for chatroom; currently 
+ *   inactive
+ *
+ *
+ * TODO
+ * ------------------------------------
+ * 
+ * - Import to add to current session
+ *   (instead of override)
+ * - Export to only render checked rows
+ * - Statistics: Number of [btn] per 
+ *   day/total, tasks per day/total
+ * - Settings: change chat name, auto-
+ *   save/auto-refresh
+ * - View second session in separate
+ *   window/section of page
+ *
+ *
+ *  USER CONFIGURATION
+ * ------------------------------------
+ *
+ *  Customise the app with these settings
+ *
+ *		Turn on Debug Mode
+ */		$debug = true;
 /*
- *	 Root location
- */	 $root = 'http://www.bkdev.co.uk/beta/tap/plan/';
+ *  	Root Location
+ */		$root = 'http://www.bkdev.co.uk/beta/tap/plan/';
+/*  
+ *  	Page Title 
+ */		$title = 'Plan v1.3';
 /*
- *	 Page title
- */	 $title = 'Plan v1.2';
+ *  	Page Subtitle
+ */		$subtitle = 'The future of 5-6pm';
 /*
- *	 Page subtitle
- */	 $subtitle = 'The future of 5-6pm';
+ *  	Turn on Livesearch
+ */		$livesearch = true;
 /*
- ***************************************************/
+ *  	Turn on Chatroom
+ */		$chatroom = true;
+/*	 
+ **************************************/
  
- session_start();
+session_start();
 
 if($debug){
 	error_reporting(-1);
@@ -77,15 +107,19 @@ include 'sec/meta.php';
 
 ?>
 
+<a href="https://github.com/benkahandevelopment/wa-plan" target="_blank">
+	<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+</a>
+
     <div class="container" id="rows">
         <div class="col-md-12 column">
         </div>
     </div>
+	
+	
 
 <?php
 
 include 'sec/modals.php';
 
 include 'sec/footer.php';
-
-?>

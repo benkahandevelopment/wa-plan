@@ -1,6 +1,6 @@
 # Changelog
 
-#### TODO (for 1.3)
+#### TODO
 * Import to add to current session instead of override
 * Export to only render checked rows
 

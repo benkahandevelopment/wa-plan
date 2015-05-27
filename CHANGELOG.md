@@ -3,6 +3,14 @@
 #### TODO
 * Import to add to current session instead of override
 * Export to only render checked rows
+* Settings: change chat name, auto-refresh/auto-save options etc
+* Ability to view second session in separate window/section of page
+
+#### Changelog 1.4:
+* Added statistic figures, percentages and graphs to a toggle button at the top of the page
+* Optimised saving order
+* Chat optimisation of content retrieval
+* Added conversion of links, images and emoticons (including sprites) to chat
 
 #### Changelog 1.3:
 * Enabled Livesearch toggle

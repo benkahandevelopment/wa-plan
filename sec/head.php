@@ -26,14 +26,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- tooltips -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            formatTooltips();
-        });
-    </script>
-
-    <style>
+	<!-- extra css -->
+	<style>
         div.row { margin-bottom:5px; }
         div#alerts {
             position:fixed;
@@ -41,7 +35,20 @@
             z-index:99;
         }
         div#alerts div { display:none; }
+		.tooltip-inner {
+			max-width:400px;
+		}
+		.footer p {
+			margin: 0;
+		}
     </style>
+	
+    <!-- tooltips -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            formatTooltips();
+        });
+    </script>
 
 </head>
 

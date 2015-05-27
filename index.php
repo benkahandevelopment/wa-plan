@@ -2,22 +2,25 @@
 
 /**************************************
  *      -----------------------
- *      |     WA-Plan 1.3     |
+ *      |     WA-Plan 1.4     |
  *      -----------------------
  *
  * Created by Ben Kahan,
  * copyright(C) 2015
  * 
  *
- * Changelog 1.3:
+ * Changelog 1.4:
  * ------------------------------------
  *
- * - Enabled Livesearch toggle
- * - Created chatrooms and logs
- * - Enabled chatroom toggle
- * - Brought in jQuery plugin "Title 
- *   Alert" for chatroom; currently 
- *   inactive
+ * - Added statistic figures,
+ *   percentages and graphs to a toggle
+ *   button at the top of the page
+ * - Optimised saving order
+ * - Chat optimisation of content
+ *   retrieval
+ * - Added conversion of links, images
+ *   and emoticons (including sprites)
+ *   to chat
  *
  *
  * TODO
@@ -46,7 +49,7 @@
  */		$root = 'http://www.bkdev.co.uk/beta/tap/plan/';
 /*  
  *  	Page Title 
- */		$title = 'Plan v1.3';
+ */		$title = 'Plan v1.4';
 /*
  *  	Page Subtitle
  */		$subtitle = 'The future of 5-6pm';
@@ -100,6 +103,8 @@ if(!isset($_SESSION['code'])&&!isset($_GET['code'])){
 include 'sec/head.php';
 
 include 'sec/top.php';
+
+include 'sec/stats.php';
 
 include 'sec/commands.php';
 

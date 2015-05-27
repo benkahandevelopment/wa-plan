@@ -28,19 +28,18 @@ usort($data,function($a, $b){
 		//test if right now
 		$ah = ((($hou>=12&&$a[4]=='PM')||($hou<12&&$a[4]=='AM')||$a[4]=='') ? true : false);
 		$bh = ((($hou>=12&&$b[4]=='PM')||($hou<12&&$b[4]=='AM')||$b[4]=='') ? true : false);
+		//if both right now
 		if($ah&&$bh){
-			//if both are right now, sort by instruction
+			//if both have instructions
 			if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
-				//if they both have different instructions, compare inst string
-				return strcmp($a[1],$b[1]);
+				return strcasecmp($a[1],$b[1]);
+			} elseif(!empty($a[1])&&!empty($b[1])&&$a[1]==$b[1]){
+				return strcasecmp($a[0],$b[0]);
+			} elseif(empty($a[1])&&empty($b[1])){
+				return strcasecmp($a[0],$b[0]);
 			} else {
-				if(empty($a[1])||empty($b[1])){
-					//if one of them doesn't have instruction, place it higher
-					return empty($a[1]) ? -1 : 1;
-				} else {
-					//if they have same instructions, compare name string
-					return strcmp($a[0],$b[0]);
-				}
+				if(empty($a[1])&&!empty($b[1])) return -1;
+				if(!empty($a[1])&&empty($b[1])) return 1;
 			}
 		} elseif($ah&&!$bh){
 			return -1;
@@ -50,14 +49,14 @@ usort($data,function($a, $b){
 			//then sort by instruction
 			if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
 				//if they both have different instructions, compare inst string
-				return strcmp($a[1],$b[1]);
+				return strcasecmp($a[1],$b[1]);
 			} else {
 				if(empty($a[1])||empty($b[1])){
 					//if one of them doesn't have instruction, place it higher
 					return empty($a[1]) ? -1 : 1;
 				} else {
 					//if they have same instructions, compare name string
-					return strcmp($a[0],$b[0]);
+					return strcasecmp($a[0],$b[0]);
 				}
 			}
 		}
@@ -98,15 +97,14 @@ usort($data,function($a, $b){
 	//then sort by instruction/name
 	if(!empty($a[1])&&!empty($b[1])&&$a[1]!=$b[1]){
 		//if they both have different instructions, compare inst string
-		return strcmp($a[1],$b[1]);
+		return strcasecmp($a[1],$b[1]);
+	} elseif(!empty($a[1])&&!empty($b[1])&&$a[1]==$b[1]){
+		//they both have the same instruction
+		return strcasecmp($a[0],$b[0]);
+	} elseif(empty($a[1])&&empty($b[1])){
+		return strcasecmp($a[0],$b[0]);
 	} else {
-		if(empty($a[1])||empty($b[1])){
-			//if one of them doesn't have instruction, place it higher
-			return empty($a[1]) ? -1 : 1;
-		} else {
-			//if they have same instructions, compare name string
-			return strcmp($a[0],$b[0]);
-		}
+		return (empty($a[1]) ? -1 : 1);
 	}
 });
 
@@ -124,7 +122,7 @@ exit();
 
 
 function sortThis($a,$b){
-    return strcmp($a[1],$b[1]);
+    return strcasecmp($a[1],$b[1]);
 }
 
 function fiveString(){

@@ -15,20 +15,18 @@
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;
-	
-	padding:10px;
 }
 
-#chatContainer form, p, span {
+#chatContainer form, #chatContainer p,  #chatContainer span {
 	margin: 0;
 	padding: 0;
 }
 
 #chatContainer #chatbox {
-	margin: 0 auto;
+	margin: 10px;
 	margin-bottom:10px;
-	height:270px;
-	width:430px;
+	height:280px;
+	width:300px;
 	overflow:auto;
 	border: 1px solid #ccc;
 	
@@ -37,15 +35,42 @@
 	box-sizing:border-box;
 }
 
-#chatContainer #usermsg { width: 350px; }
+#chatContainer #usermsg {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	padding: 5px;
+	width:300px;
+	margin: 0 10px 10px 10px;
+}
 
-#chatContainer #submitmsg { width: 70px; float: right; }
+#chatContainer #submitmsg { width: 70px; float: right; display:none; }
 
 #chatContainer .error { color: #f00; }
 
-#chatContainer #menu { padding: 0 0 10px 0; }
+#chatContainer #menu {
+	padding: 10px;
+	margin-bottom:10px;
+	/*background: #555;
+	color: white;
+	border-bottom: 1px solid black;*/
+	border-bottom: 1px solid #ccc;
+}
 
-#chatContainer .welcome { display:block; }
+#chatContainer #menu input#chatName { 
+	padding: 5px; 
+	width:50%; 
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	/*background:#555;*/
+	border: none;
+	border-bottom: 1px dashed #ccc;
+}
+
+input#chatName:focus {
+	outline:none;
+}
 
 #chatContainer .logout { display:block; }
 
@@ -67,6 +92,7 @@
 
 #chatContainer .msgln .meta span.time {
 	font-weight:normal;
+	font-size:12px;
 	color:#666;
 }
 
@@ -74,6 +100,11 @@
 	border-left: 1px dashed #ccc;
 	margin: 5px 0;
 	padding: 0 5px;
+	line-height:26px;
+}
+
+#chatContainer .msgln .msg img {
+	max-width:100%;
 }
 
 #chatContainer span#sending {
@@ -85,4 +116,57 @@
 	border-top: 1px solid #ccc;
 	color: #ccc;
 	font-style:italic;
+}
+
+#chatContainer i.minimize {
+	float:right;
+	padding:10px;
+	color:#ccc;
+	cursor:pointer;
+}
+
+#chatContainer i.minimize:hover { color: #555; }
+
+#menu i.info_prompt { color: #777; }
+
+/* emoticons */
+.emoticon {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-image: url(sprite.png);
+}
+.emoticon-smile {
+	width: 16px;
+	height: 16px;
+	background-position: 0 0;
+}
+.emoticon-tongue {
+	width: 16px;
+	height: 16px;
+	background-position: -16px 0;
+}
+.emoticon-sad {
+	width: 16px;
+	height: 16px;
+	background-position: -32px 0;
+}
+.emoticon-wink {
+	width: 16px;
+	height: 16px;
+	background-position: -48px 0;
+}
+.emoticon-grin {
+	width: 16px;
+	height: 16px;
+	background-position: -64px 0;
+}
+.emoticon-cool {
+	width: 16px;
+	height: 16px;
+	background-position: -80px 0;
+}
+.emoticon-like {
+	width: 16px;
+	height: 16px;
+	background-position: 0 -16px;
 }
